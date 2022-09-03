@@ -1,1 +1,2 @@
-.env
+src/.env
+infra/lambda.zip
