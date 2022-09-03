@@ -71,7 +71,6 @@ def main():
     instances_data = []
     
     for instance in instances:
-        print(instance.tags)
         instance_volumes = instance.volumes.all()
         instance_volumes_size = 0
 
