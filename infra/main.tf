@@ -41,9 +41,9 @@ resource "aws_lambda_function" "test_lambda" {
 
   environment {
     variables = {
-      aws_access_key_id = var.aws_access_key_id,
-      aws_secret_access_key = var.aws_secret_access_key
-      region = var.region
+      # aws_access_key_id = var.aws_access_key_id,
+      # aws_secret_access_key = var.aws_secret_access_key
+      # region = var.region
     }
   }
 }
