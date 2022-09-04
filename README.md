@@ -3,13 +3,17 @@
 This repo stores the solution to the COCUS DevOps Challenge
 
 ## Environment
+
 Python 3.8
+
 Terraform 0.15.8
 
 ## Installation
 
 For convenience a bash script ```init.sh``` was developed. 
+
 The script must be ran from this repo root.
+
 This script bootstraps the environment (initialized terraform modules, and installs python packages) and the required env files/variable files.
 
 After initialitazion, the src/.env and infra/aws.auto.tfvars files must be configured with your credentials
@@ -17,10 +21,12 @@ After initialitazion, the src/.env and infra/aws.auto.tfvars files must be confi
 ## Usage
 
 ### Python Script
-
+Simply run the following command from the root folder.
 ```
 python src/run.py name=*
 ```
+
+a name parameter should be passed to apply the filter
 
 ### Lambda Function
 
