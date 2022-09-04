@@ -29,46 +29,50 @@ def print_table(instances_data):
     data = [data.values() for data in instances_data]
     print(tabulate(data, headers))
 
-        
-
-
-def main():
+    
+def main(name_filter):
     
     if(not passed_config_check()):
-        return sys.exit(1)
-
-    if(not sys.argv[1].startswith('name=')):
-        print('A name argument should be passed. Use * if you want to get all EC2 instances')
-        print_usage()
-        return sys.exit(1)
-    
-    instance_name_filter = sys.argv[1].replace('name=', '')
-    if(instance_name_filter == ''):
-        print('no filter passed to name argument. Please use an instance name or * for all instances')
-        print_usage()
-        return sys.exit(1)
+        return sys.exit(1)   
 
     ec2_client = boto3.resource('ec2',
         aws_access_key_id=os.environ.get('aws_access_key_id'),
         aws_secret_access_key=os.environ.get('aws_secret_access_key'),
         region_name=os.environ.get('region'))
 
+    #ec2_client = boto3.resource('ec2')
+
     instances = {}
 
-    match instance_name_filter:
-        case '*':
-            instances = ec2_client.instances.all()
-        case _:
-            instances = ec2_client.instances.filter(Filters=[
+    # only for python3.10
+    # match instance_name_filter:
+    #     case '*':
+    #         instances = ec2_client.instances.all()
+    #     case _:
+    #         instances = ec2_client.instances.filter(Filters=[
+    #                 {
+    #                     'Name': 'tag:Name',
+    #                     'Values': [name_filter]
+    #                 }
+    #             ]
+    #         )
+
+    if(name_filter == '*'):
+        instances = ec2_client.instances.all()
+    else:
+        instances = ec2_client.instances.filter(Filters=[
                     {
                         'Name': 'tag:Name',
-                        'Values': [instance_name_filter]
+                        'Values': [name_filter]
                     }
                 ]
-            )
+            )  
 
     total_volume_size = 0
     instances_data = []
+    if(len([instance for instance in instances]) == 0):
+        print('No EC2 server found for that name')
+        return sys.exit(1)
     
     for instance in instances:
         instance_volumes = instance.volumes.all()
@@ -92,4 +96,4 @@ def main():
     print_table(instances_data)
     print('\nTotal EBS size: ' + str(total_volume_size) + 'GB')
 
-main()
+

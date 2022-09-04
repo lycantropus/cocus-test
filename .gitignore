@@ -1,2 +1,16 @@
 src/.env
 infra/lambda.zip
+infra/.terraform*
+infra/*.tfvars
+infra/*.tfstate*
+src/__pycache__
+src/bin
+src/boto*
+src/dateutil
+src/dotenv
+src/jmespath*
+src/python_*
+src/s3transfer*
+src/six*
+src/tabulate*
+src/urllib*
