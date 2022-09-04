@@ -4,9 +4,9 @@ This repo stores the solution to the COCUS DevOps Challenge
 
 ## Environment
 
-Python 3.8
+Python 3.9
 
-Terraform 0.15.8
+Terraform 0.15
 
 ## Installation
 
