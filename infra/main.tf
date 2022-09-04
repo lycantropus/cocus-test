@@ -33,7 +33,8 @@ resource "aws_lambda_function" "test_lambda" {
   filename      = "lambda.zip"
   function_name = "lambda_function_ebs"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "main.main"
+  handler       = "lambda_function.lambda_handler"
+  timeout = 60
 
   source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
 
@@ -41,9 +42,9 @@ resource "aws_lambda_function" "test_lambda" {
 
   environment {
     variables = {
-      # aws_access_key_id = var.aws_access_key_id,
-      # aws_secret_access_key = var.aws_secret_access_key
-      # region = var.region
+      aws_access_key_id = var.aws_access_key_id,
+      aws_secret_access_key = var.aws_secret_access_key
+      region = var.region
     }
   }
 }

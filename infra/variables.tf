@@ -1,12 +1,13 @@
-# variable "aws_access_key_id" {
-#   type = string
-# }
+variable "aws_access_key_id" {
+  type = string
+  sensitive = true
+}
 
-# variable "aws_secret_access_key" {
-#   type = string
-# }
+variable "aws_secret_access_key" {
+  type = string
+  sensitive = true
+}
 
 variable "region" {
   type = string
-  default = "eu-west-3"
 }
