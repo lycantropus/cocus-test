@@ -95,5 +95,6 @@ def main(name_filter):
 
     print_table(instances_data)
     print('\nTotal EBS size: ' + str(total_volume_size) + 'GB')
+    return sys.exit(0)
 
 

@@ -26,7 +26,7 @@ python src/run.py name=*
 
 In order to deploy the resources just run:
 ```
-terraform apply --auto-approve
+cd infra && terraform apply --auto-approve
 ```
 After this, a test event can be created in the AWS console.
 This test event should consist of a JSON object with a name key and a value which will be the filter:
@@ -35,4 +35,5 @@ This test event should consist of a JSON object with a name key and a value whic
     "name": "*"
 }
 ```
+Press Test and you should see the result in the log display.
 
