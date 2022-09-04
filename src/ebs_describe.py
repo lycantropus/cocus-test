@@ -44,19 +44,6 @@ def main(name_filter):
 
     instances = {}
 
-    # only for python3.10
-    # match instance_name_filter:
-    #     case '*':
-    #         instances = ec2_client.instances.all()
-    #     case _:
-    #         instances = ec2_client.instances.filter(Filters=[
-    #                 {
-    #                     'Name': 'tag:Name',
-    #                     'Values': [name_filter]
-    #                 }
-    #             ]
-    #         )
-
     if(name_filter == '*'):
         instances = ec2_client.instances.all()
     else:
@@ -95,6 +82,6 @@ def main(name_filter):
 
     print_table(instances_data)
     print('\nTotal EBS size: ' + str(total_volume_size) + 'GB')
-    return sys.exit(0)
+    return
 
 
